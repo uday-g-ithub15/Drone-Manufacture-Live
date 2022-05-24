@@ -1,9 +1,11 @@
 import React from 'react';
 import Banner from './Banner'
+import BussinessSummary from './BussinessSummary';
 const Home = () => {
     return (
-        <div className='w-10/12 bg-slate-500 mx-auto'>
+        <div className='border-2 border-black'>
             <Banner />
+            <BussinessSummary />
         </div>
     );
 };

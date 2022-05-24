@@ -1,0 +1,7 @@
+.divider-custom{
+    width: 3px;
+    height: 4em;
+    /* border: solid; */
+    background-color: white;
+    /* position: absolute; */
+}

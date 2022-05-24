@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <section className='mt-5 border-2 border-black'>
+        <section className='w-full mt-5 border-2 border-black'>
             <div class="carousel w-full">
                 <div id="slide1" class="carousel-item relative w-full">
                     <img src="https://img.freepik.com/free-photo/asian-male-engineer-specialist-with-measuring-machine-with-manipulator-armthreedimensional-coordinate-measurement-check-sizes-3d-check-sizes-parts-cmm-after-machining-process_609648-162.jpg?w=996&t=st=1653408409~exp=1653409009~hmac=41fffcce9f2c817442c40ec97dce9c3600efe280dd3827e63d49bbea7638e835" class="w-full" alt='' /> /
