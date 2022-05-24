@@ -1,9 +1,14 @@
 import './App.css';
+import Navbar from './pages/Shared/Header/Navbar';
+import Home from './pages/Home/Home';
+import Footer from './pages/Shared/Footer/Footer';
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <Navbar />
+      <Home />
+      <Footer />
     </>
   );
 }
