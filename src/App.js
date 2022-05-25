@@ -1,14 +1,20 @@
 import './App.css';
-import Navbar from './pages/Shared/Header/Navbar';
 import Home from './pages/Home/Home';
-import Footer from './pages/Shared/Footer/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Purchase from './pages/Purchase/Purchase';
+import Parts from './pages/Home/Parts';
+import Register from './pages/Login/Register';
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <Footer />
+      <Routes>
+        <Route path='/' element={<Home />} ></Route>
+        <Route path='/parts' element={<Parts />} >
+        </Route>
+        <Route path='/purchase/:id' element={<Purchase />}></Route>
+        <Route path='/register' element={<Register />} />
+      </Routes>
     </>
   );
 }

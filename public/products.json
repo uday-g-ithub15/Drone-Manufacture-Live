@@ -1,0 +1,56 @@
+[
+    {
+      "index": 0,
+      "picture": "https://learnassets.getfpv.com/learn/wp-content/uploads/2018/01/05182015/1300-4s-95c-top.jpg",
+      "price": 120,
+      "minimumOrder": 200,
+      "available": 2500,
+      "name": "Battery",
+      "description": "Lithium polymer (LiPo) batteries are among the most common battery types used for drones because they offer the advantage of high energy density in relation to their size and weight, with a higher voltage per cell, so they can power the drone's on-board systems with fewer cells than other rechargeables."
+    },
+    {
+      "index": 1,
+      "picture": "https://images-na.ssl-images-amazon.com/images/I/51q8wBggXUL.jpg",
+      "price": 215,
+      "minimumOrder":120 ,
+      "available": 39,
+      "name": "Transmitter and Receiver",
+      "description": "A Drone Radio Transmitter is an electronic device that uses radio signals to transmit commands wirelessly via a set radio frequency over to the Radio Receiver, which is connected to the drone being remotely controlled."
+    },
+    {
+      "index": 2,
+      "picture": "https://ae01.alicdn.com/kf/H4ad4bbed8c8242f18832422fd2ef2d4ar/FEICHAO-F450-Drone-Frame-Kit-4-Axle-Airframe-450mm-Quadcopter-Frame-Kit-with-Landing-Skid-Gear.jpg_Q90.jpg_.webp",
+      "price": 96,
+      "minimumOrder": 100,
+      "available": 6000,
+      "name": "Quadqupter Frame",
+      "description": "Whether it's made of Carbon, Wood, Metal, Plastic or Fiberglass the frame is the thing that holds your Drone together. Without it, you simply would not be able to take to the sky."
+    },
+    {
+      "index": 3,
+      "picture": "https://sc04.alicdn.com/kf/Hba03dc1921074ecb9779ad8260106cf6J.jpg",
+      "price": 130,
+      "minimumOrder": 110,
+      "available": 5000,
+      "name": "Brushed Motor",
+      "description": "Generally speaking, brushed motors are used in the smallest drones, whereas larger drones and UAVs will use brushless motors, as they can carry the extra weight of the additional electronics. Brushless drone motors also require an electronic speed controller (ESC) to operate."
+    },
+    {
+      "index": 4,
+      "picture": "https://i5.walmartimages.com/asr/90109865-c586-475f-8d7c-23ae37aee699.0fdc8dc33b05e100406abec4084598fe.jpeg",
+      "price": 10,
+      "minimumOrder": 300,
+      "available": 7000,
+      "name": "Propeller",
+      "description": "The fewer the propeller blades, the more the drone's speed and the higher its efficiency. The best propeller in this category is the HQProp 5040 4-blade propeller. The HQProp 5040 4-blade propeller is renowned for its high quality."
+    },
+    {
+      "index": 5,
+      "picture": "https://www.eeeshopbd.com/wp-content/uploads/2019/05/kk.jpg",
+      "price": 120,
+      "minimumOrder": 100,
+      "available": 2000,
+      "name": "ESC(Electronic Speed Controller)",
+      "description": "Electronic speed controllers (ESCs) are devices that allow drone flight controllers to control and adjust the speed of the aircraft's electric motors. A signal from the flight controller causes the ESC to raise or lower the voltage to the motor as required, thus changing the speed of the propeller."
+    }
+  ]
