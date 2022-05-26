@@ -1,21 +1,24 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import Navbar from '../Shared/Header/Navbar';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 
 const Register = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
-        user,
-        loading,
+        userCreate,
+        loadingCreate,
         createError,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [user, loading] = useAuthState(auth)
+    const from = location.state?.from?.pathname || "/";
     let err;
     const [updateProfile, updating] = useUpdateProfile(auth);
     const onSubmit = async (data, e) => {
@@ -24,7 +27,7 @@ const Register = () => {
         await updateProfile({ displayName: data.name })
 
     };
-    if (loading || updating) {
+    if (loading || updating || loadingCreate) {
         return <Loading />
     }
     if (createError) {
@@ -35,8 +38,8 @@ const Register = () => {
             err = '';
         }
     }
-    if (user) {
-        navigate('/');
+    if (user || userCreate) {
+        navigate(from, { replace: true });
     }
     return (
         <>
