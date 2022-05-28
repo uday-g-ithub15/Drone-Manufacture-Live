@@ -22,9 +22,9 @@ const Navbar = () => {
                     <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to={'/home'}>Home</Link></li>
                         <li><Link to={'/parts'}>Parts</Link></li>
-                        <li><Link to={'/home'}>Item 3</Link></li>
-                        <li><Link to={'/home'}>Item 3</Link></li>
-                        <li><Link to={'/home'}>Item 3</Link></li>
+                        <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                        <li><Link to={'/blogs'}>Blogs</Link></li>
+                        <li><Link to={'/portfolio'}>My Portfolio</Link></li>
                     </ul>
                 </div>
                 <div className='hidden lg:block'>
@@ -35,9 +35,9 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li className=' hover:bg-primary transition-all duration-200'><Link to={'/home'}>Home</Link></li>
                     <li className=' hover:bg-primary transition-all duration-200'><Link to={'/parts'}>Parts</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/home'}>Item 3</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/home'}>Item 3</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/home'}>Item 3</Link></li>
+                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/dashboard'}>Dashboard</Link></li>
+                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/portfolio'}>My Portfolio</Link></li>
+                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/blogs'}>Blogs</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
