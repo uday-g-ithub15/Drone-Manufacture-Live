@@ -19,6 +19,7 @@ const Purchase = () => {
     const [newStock, setNewStock] = useState(stock);
     useEffect(() => setNewStock(stock), [stock])
     const onSubmit = async (data, e) => {
+        e.preventDefault();
         const email = user.email;
         const userQuantity = e.target.quantity.value;
         if (parseInt(userQuantity) < parseInt(min)) {
@@ -41,7 +42,15 @@ const Purchase = () => {
             console.log(data);
         })
         toast.success('Order Successful')
-        console.log(userQuantity);
+
+        fetch(`http://localhost:5000/parts/${id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ newStock, userQuantity })
+
+        })
     };
     if (userLoading) {
         return <Loading />
