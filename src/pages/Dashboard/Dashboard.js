@@ -6,7 +6,7 @@ const Dashboard = () => {
     return (
         <section>
             <Navbar />
-            <section className='mt-24 fixed w-full border-2 border-black '>
+            <section className='mt-24 fixed w-full '>
                 <div class="drawer drawer-mobile">
                     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content flex flex-col">
@@ -16,10 +16,10 @@ const Dashboard = () => {
                     </div>
                     <div class="drawer-side">
                         <label for="my-drawer-2" class="drawer-overlay"></label>
-                        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
-                            <li ><Link to='/dashboard'>My Profile</Link></li>
-                            <li><Link to='/dashboard/reviews'>My Review</Link></li>
-                            <li><Link to='/dashboard/myorder'>My Orders</Link></li>
+                        <ul class="menu p-4 overflow-y-auto w-80 bg-slate-200 text-accent">
+                            <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard'>My Profile</Link></li>
+                            <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/reviews'>My Review</Link></li>
+                            <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/myorder'>My Orders</Link></li>
                         </ul>
 
                     </div>

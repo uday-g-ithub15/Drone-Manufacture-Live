@@ -15,4 +15,5 @@ tr:hover td{
 th{
     background-color: rgb(82, 65, 47);
     color: white;
+    padding: 15px;
 }

@@ -16,7 +16,12 @@ const MyOrders = () => {
         return <Loading />
     }
     const handleCancel = id => {
-        console.log(id);
+        fetch(`http://localhost:5000/parts/${id}`, {
+            method: "DELETE"
+        }).then(res => res.json()).then(data => {
+            const rest = orders.filter(order => order._id !== id)
+            setOrders(rest)
+        })
     }
     return (
         <table>
@@ -36,9 +41,31 @@ const MyOrders = () => {
                         <td  >{order.name}</td>
                         <td  >{order.orderQuantity}</td>
                         <td  >UnPaid</td>
-                        <td  ><button onClick={() => handleCancel(order._id)} className='btn btn-sm bg-stone-700 text-slate-200 font-semibold'>Cancel Order</button></td>
+                        <td  ><label htmlFor=" confirm-modal" className='btn btn-sm bg-stone-700 text-slate-200 font-semibold'>Cancel Order</label>
+
+                        </td>
+                        <input type="checkbox" id=" confirm-modal" class="modal-toggle" />
+                        <div class="modal modal-bottom sm:modal-middle">
+                            <div class="modal-box">
+                                <h3 class="font-bold text-lg">Are you sure you want to cancel this order ? </h3>
+                                <div class="modal-action">
+                                    <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold" onClick={() => handleCancel(order._id)}>Yes</label>
+                                    <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold">Not now</label>
+                                </div>
+                            </div>
+                        </div>
                     </tr>)
                 }
+                {/* <input type="checkbox" id=" confirm-modal" class="modal-toggle" />
+                <div class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                        <h3 class="font-bold text-lg">Are you sure you want to cancel this order ? </h3>
+                        <div class="modal-action">
+                            <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold">Yes</label>
+                            <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold">Not now</label>
+                        </div>
+                    </div>
+                </div> */}
             </tbody>
         </table>
     );
