@@ -6,7 +6,7 @@ const Dashboard = () => {
     return (
         <section>
             <Navbar />
-            <section className='mt-24 border-2 border-black '>
+            <section className='mt-24 fixed w-full border-2 border-black '>
                 <div class="drawer drawer-mobile">
                     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content flex flex-col">

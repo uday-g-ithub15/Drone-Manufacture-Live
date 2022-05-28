@@ -56,7 +56,7 @@ const Purchase = () => {
         return <Loading />
     }
     return (
-        <div class="hero min-h-screen border-2 border-black w-4/5 mx-auto">
+        <div class="hero min-h-screen w-4/5 mx-auto">
             <div class="hero-content flex-col-reverse lg:flex-row-reverse">
                 <div class="sm:text-center flex-col items-center lg:flex-row">
                     <div className='mr-2'>
@@ -74,18 +74,18 @@ const Purchase = () => {
                 <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl">
                     <div class="card-body text-accent">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <h1 className='text-3xl text-accent'>Please Register</h1>
+                            <h1 className='text-3xl text-accent'>Buyer & Product information</h1>
                             <label className="label">
-                                <span className="label-text ">Your name ....</span>
+                                <span className="label-text text-accent">Buyer name ....</span>
                             </label>
                             <input type={'text'} className="input input-bordered input-info w-full max-w-xs" {...register("name")} value={user.displayName} readOnly />
 
                             <label className="label">
-                                <span className="label-text">Enter your email</span>
+                                <span className="label-text text-accent">Buyer email</span>
                             </label>
                             <input className="input input-bordered input-info w-full max-w-xs" type={'email'} {...register("email")} value={user.email} readOnly />
                             <label className="label">
-                                <span className="label-text">Parts </span>
+                                <span className="label-text text-accent">Parts </span>
                             </label>
                             <input
                                 type="text"
@@ -93,7 +93,7 @@ const Purchase = () => {
                                 {...register("part")} value={part.name} readOnly
                             />
                             <label className="label">
-                                <span className="label-text">Order Quantity </span>
+                                <span className="label-text text-accent">Order Quantity </span>
                             </label>
                             <input
                                 type="number"
