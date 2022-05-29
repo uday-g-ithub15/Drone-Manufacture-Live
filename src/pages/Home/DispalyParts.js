@@ -6,7 +6,7 @@ import DisplayPart from './DisplayPart';
 
 const Parts = () => {
     const navigate = useNavigate();
-    const { data: parts, isLoading, refetch } = useParts(`http://localhost:5000/parts`)
+    const { data: parts, isLoading, refetch } = useParts(`https://secret-everglades-45349.herokuapp.com/parts`)
     if (isLoading) {
         return <Loading />
     }

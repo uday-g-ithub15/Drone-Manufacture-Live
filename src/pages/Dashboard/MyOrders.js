@@ -13,7 +13,7 @@ const MyOrders = () => {
     const email = user?.email;
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${email}`, {
+        fetch(`https://secret-everglades-45349.herokuapp.com/orders?email=${email}`, {
             method: "GET",
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const MyOrders = () => {
         return <Loading />
     }
     const handleCancel = id => {
-        fetch(`http://localhost:5000/parts/${id}`, {
+        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`, {
             method: "DELETE"
         }).then(res => res.json()).then(data => {
             const rest = orders.filter(order => order._id !== id)
