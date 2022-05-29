@@ -2,7 +2,7 @@ import './App.css';
 import Home from './pages/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import Purchase from './pages/Purchase/Purchase';
-import Parts from './pages/Home/Parts';
+import Parts from './pages/Parts/Parts';
 import Register from './pages/Login/Register';
 import Login from './pages/Login/Login';
 import PrivateLogin from './pages/Private/PrivateLogin';
