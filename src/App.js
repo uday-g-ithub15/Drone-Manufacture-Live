@@ -16,6 +16,10 @@ import AddReview from './pages/Dashboard/AddReview';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AllUsers from './pages/Dashboard/AllUsers';
+import ManageOrder from './pages/Dashboard/ManageOrder';
+import ManageProduct from './pages/Dashboard/ManageProduct';
+import AddProduct from './pages/Dashboard/AddProduct';
+import PrivateAdmin from './pages/Private/PrivateAdmin';
 
 function App() {
   return (
@@ -33,7 +37,10 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route path='/dashboard/myorder' element={<MyOrders />} />
           <Route path='/dashboard/reviews' element={<AddReview />} />
-          <Route path='/dashboard/allusers' element={<AllUsers />} />
+          <Route path='/dashboard/manageuser' element={<PrivateAdmin><AllUsers /></PrivateAdmin>} />
+          <Route path='/dashboard/manageorders' element={<PrivateAdmin><ManageOrder /></PrivateAdmin>} />
+          <Route path='/dashboard/manageproduct' element={<PrivateAdmin><ManageProduct /></PrivateAdmin>} />
+          <Route path='/dashboard/addproduct' element={<PrivateAdmin><AddProduct /></PrivateAdmin>} />
         </Route>
         <Route path='*' element={<Error />} />
       </Routes>
