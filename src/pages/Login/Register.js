@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import Navbar from '../Shared/Header/Navbar';
 import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
@@ -6,6 +6,7 @@ import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Register = () => {
         createError,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [user, loading] = useAuthState(auth)
+    const { token } = useToken(userCreate || user)
     const from = location.state?.from?.pathname || "/";
     let err;
     const [updateProfile, updating] = useUpdateProfile(auth);
@@ -27,6 +29,11 @@ const Register = () => {
         await updateProfile({ displayName: data.name })
 
     };
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
     if (loading || updating || loadingCreate) {
         return <Loading />
     }
@@ -37,9 +44,6 @@ const Register = () => {
         else {
             err = '';
         }
-    }
-    if (user || userCreate) {
-        navigate(from, { replace: true });
     }
     return (
         <>

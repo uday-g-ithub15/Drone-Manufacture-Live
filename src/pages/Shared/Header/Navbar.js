@@ -11,6 +11,7 @@ const Navbar = () => {
     const logOut = () => {
         signOut(auth)
         navigate('/login')
+        localStorage.removeItem('accessToken')
     }
     return (
         <div className="navbar bg-accent text-white w-full fixed top-0 z-10">
