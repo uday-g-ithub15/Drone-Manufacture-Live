@@ -1,17 +1,35 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import './MyOrder.css'
 
 const MyOrders = () => {
+    const navigate = useNavigate();
     const [user, userLoading] = useAuthState(auth)
     const email = user?.email;
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${email}`).then(res => res.json()).then(data => setOrders(data))
+        fetch(`http://localhost:5000/orders?email=${email}`, {
+            method: "GET",
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(res => {
+            console.log(res)
+            if (res.status === 401 || res.status === 403) {
+                signOut(auth)
+                navigate('/login')
+                localStorage.removeItem('accessToken')
+                toast.error('Something went wrong, please login again')
+            }
+            return res.json()
+        }).then(data => setOrders(data))
 
-    }, [email])
+    }, [email, user, navigate])
     if (userLoading) {
         return <Loading />
     }
