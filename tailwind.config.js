@@ -5,7 +5,11 @@ module.exports = {
     //   'myPrimary': '#FE5A0E',
     //   'white': '#ffffff'
     // },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        portfolioBG: "url('/src/pages/MyPortfolio/img/uday.jpg')"
+      }
+    },
   },
   daisyui: {
     // themes: false,
