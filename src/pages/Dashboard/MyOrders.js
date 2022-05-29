@@ -74,16 +74,6 @@ const MyOrders = () => {
                         </div>
                     </tr>)
                 }
-                {/* <input type="checkbox" id=" confirm-modal" class="modal-toggle" />
-                <div class="modal modal-bottom sm:modal-middle">
-                    <div class="modal-box">
-                        <h3 class="font-bold text-lg">Are you sure you want to cancel this order ? </h3>
-                        <div class="modal-action">
-                            <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold">Yes</label>
-                            <label htmlFor=" confirm-modal" class="btn btn-primary text-white font-bold">Not now</label>
-                        </div>
-                    </div>
-                </div> */}
             </tbody>
         </table>
     );

@@ -1,13 +1,18 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 import Navbar from '../Shared/Header/Navbar';
 
 const Dashboard = () => {
+    const [user, loading] = useAuthState(auth);
+    const { admin } = useAdmin(user);
     return (
         <section>
             <Navbar />
-            <section className='mt-24 fixed w-full '>
-                <div class="drawer drawer-mobile">
+            <section className='mt-24  w-full '>
+                <div class="drawer drawer-mobile  overflow-y-scroll">
                     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content flex flex-col">
                         <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
@@ -20,6 +25,7 @@ const Dashboard = () => {
                             <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard'>My Profile</Link></li>
                             <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/reviews'>My Review</Link></li>
                             <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/myorder'>My Orders</Link></li>
+                            {admin && <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/allusers'>All users</Link></li>}
                         </ul>
 
                     </div>

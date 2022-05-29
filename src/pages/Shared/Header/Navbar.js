@@ -14,7 +14,7 @@ const Navbar = () => {
         localStorage.removeItem('accessToken')
     }
     return (
-        <div className="navbar bg-accent text-white w-full fixed top-0 z-10">
+        <div className="navbar bg-accent text-white w-full fixed top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
