@@ -33,7 +33,7 @@
       "minimumOrder": 110,
       "available": 5000,
       "name": "Brushed Motor",
-      "description": "Generally speaking, brushed motors are used in the smallest drones, whereas larger drones and UAVs will use brushless motors, as they can carry the extra weight of the additional electronics. Brushless drone motors also require an electronic speed controller (ESC) to operate."
+      "description": "Generally speaking, brushed motors are used in the smallest drones, whereas larger drones and UAVs will use brushless motors, as they can carry the extra weight of the additional Drone. Brushless drone motors also require an electronic speed controller (ESC) to operate."
     },
     {
       "index": 4,

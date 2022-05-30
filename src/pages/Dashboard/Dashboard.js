@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 import Navbar from '../Shared/Header/Navbar';
 import Loading from '../Shared/Loading';
+import { BiMenu } from 'react-icons/bi'
 
 const Dashboard = () => {
     const [user, loading] = useAuthState(auth);
@@ -15,11 +16,11 @@ const Dashboard = () => {
     return (
         <section>
             <Navbar />
-            <section className='mt-24  w-full '>
+            <section className='mt-20 w-full '>
                 <div class="drawer drawer-mobile  overflow-y-scroll">
                     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content flex flex-col">
-                        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                        <label for="my-drawer-2" class="text-black text-3xl drawer-button fixed top-16 lg:hidden"><BiMenu /></label>
                         <h1 className='text-accent text-3xl'>Dashboard</h1>
                         <Outlet />
                     </div>

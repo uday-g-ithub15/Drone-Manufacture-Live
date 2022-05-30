@@ -4,10 +4,10 @@ import { Link, Outlet } from 'react-router-dom';
 const About = () => {
     return (
         <div className='flex justify-around -mt-10 mb-10 p-10'>
-            <div>
+            <div className='grow-[2]'>
                 <Outlet />
             </div>
-            <ul>
+            <ul className='grow'>
                 <li>
                     <Link className='btn btn-link text-2xl text-[#3600f96b]' to='/portfolio'>About Me</Link>
                 </li>

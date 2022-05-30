@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const AllUsers = () => {
-    const { data, isLoading, refetch } = useQuery(['users'], () => fetch(`https://secret-everglades-45349.herokuapp.com/users`, {
+    const { data, isLoading, refetch } = useQuery(['users'], () => fetch(`http://localhost:5000/users`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -15,7 +15,7 @@ const AllUsers = () => {
     }
 
     const createAdmin = email => {
-        fetch(`https://secret-everglades-45349.herokuapp.com/users/admin/${email}`, {
+        fetch(`http://localhost:5000/users/admin/${email}`, {
             method: "PUT",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,16 +39,15 @@ const AllUsers = () => {
                 <tr>
                     <th  ></th>
                     <th  >Email</th>
-                    <th  >Quantity</th>
+                    <th  >Make Admin</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    data.map((user, index) => <tr style={{ marginBottom: '5px' }} key={user._id}>
+                    data?.map((user, index) => <tr style={{ marginBottom: '5px' }} key={user._id}>
                         <td  >{index + 1}</td>
                         <td  >{user.email}</td>
                         <td  >{user.userRole === 'ADMIN' ? 'Already Admin' : <button className="btn btn-sm btn-primary" onClick={() => createAdmin(user.email)}>Make admin</button>}</td>
-                        <td  ><button className="btn btn-sm btn-info">Remove User</button></td>
                     </tr>)
                 }
             </tbody>

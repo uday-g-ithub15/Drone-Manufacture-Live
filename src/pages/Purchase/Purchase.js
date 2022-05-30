@@ -13,7 +13,7 @@ const Purchase = () => {
     const [user, userLoading] = useAuthState(auth);
     const [part, setPart] = useState({});
     useEffect(() => {
-        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`).then(res => res.json()).then(data => setPart(data))
+        fetch(`http://localhost:5000/parts/${id}`).then(res => res.json()).then(data => setPart(data))
     }, [id])
     const { name, picture, price, minimumOrder: min, description: desc, available: stock } = part;
     const [newStock, setNewStock] = useState(stock);
@@ -32,7 +32,7 @@ const Purchase = () => {
         }
         setNewStock(newStock - userQuantity)
         const product = { picture, price, orderQuantity: userQuantity, name, description: desc, email }
-        fetch(`https://secret-everglades-45349.herokuapp.com/orders`, {
+        fetch(`http://localhost:5000/orders`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const Purchase = () => {
         })
         toast.success('Order Successful')
 
-        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`, {
+        fetch(`http://localhost:5000/parts/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
