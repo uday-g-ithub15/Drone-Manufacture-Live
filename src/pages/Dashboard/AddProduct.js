@@ -14,7 +14,7 @@ const AddProduct = () => {
         const description = e.target.desc.value;
         const picture = e.target.picture.value;
         const part = { picture, price, minimumOrder, available, name, description }
-        fetch(`https://secret-everglades-45349.herokuapp.com//parts`, {
+        fetch(`https://secret-everglades-45349.herokuapp.com/parts`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

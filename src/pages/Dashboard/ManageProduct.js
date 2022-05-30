@@ -3,12 +3,12 @@ import useParts from '../../hooks/useParts';
 import Loading from '../Shared/Loading';
 
 const ManageProduct = () => {
-    const { data: orders, isLoading, refetch } = useParts(`https://secret-everglades-45349.herokuapp.com//parts`)
+    const { data: orders, isLoading, refetch } = useParts(`https://secret-everglades-45349.herokuapp.com/parts`)
     if (isLoading) {
         return <Loading />
     }
     const handleCancel = id => {
-        fetch(`https://secret-everglades-45349.herokuapp.com//part/${id}`, {
+        fetch(`https://secret-everglades-45349.herokuapp.com/part/${id}`, {
             method: "DELETE"
         }).then(res => res.json()).then(data => {
             refetch()

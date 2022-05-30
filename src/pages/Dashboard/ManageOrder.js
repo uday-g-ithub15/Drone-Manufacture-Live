@@ -5,7 +5,7 @@ const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch(`https://secret-everglades-45349.herokuapp.com//orders`).then(res => res.json()).then(data => {
+        fetch(`https://secret-everglades-45349.herokuapp.com/orders`).then(res => res.json()).then(data => {
             setOrders(data)
             setLoading(false)
         })
@@ -15,7 +15,7 @@ const ManageOrder = () => {
     }
     // setorders(...data)
     const handleCancel = id => {
-        fetch(`https://secret-everglades-45349.herokuapp.com//parts/${id}`, {
+        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`, {
             method: "DELETE"
         }).then(res => res.json()).then(data => {
             const rest = orders.filter(order => order._id !== id)
