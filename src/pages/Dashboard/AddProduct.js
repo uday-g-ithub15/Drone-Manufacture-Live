@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddProduct = () => {
@@ -20,9 +21,12 @@ const AddProduct = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(part)
+        }).then(res => res.json()).then(data => {
+            if (data.insertedId) {
+                toast.success('Item added successful')
+            }
         })
-        console.log(part);
-
+        e.target.reset()
     };
     return (
         <div className='text-info'>

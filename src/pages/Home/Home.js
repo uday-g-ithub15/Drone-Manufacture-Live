@@ -8,7 +8,7 @@ import GetInTouch from './GetInTouch';
 import TeamMember from './TeamMember';
 const Home = () => {
     return (
-        <div className='border-2 border-black mt-12'>
+        <div className=' mt-12'>
             <Navbar />
             <Banner />
             <DisplayParts />

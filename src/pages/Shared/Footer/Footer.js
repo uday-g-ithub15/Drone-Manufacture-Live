@@ -44,8 +44,6 @@ const Footer = () => {
                     <ul className='leading-9'>
                         <li>&#8658; Recycling rejected products</li>
                         <li>&#8658; Eco-friendly products</li>
-                        <li>&#8658; </li>
-                        <li>&#8658; </li>
                     </ul>
                 </div>
                 <div className='hidden lg:block'>
