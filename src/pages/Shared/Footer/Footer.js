@@ -14,7 +14,7 @@ const Footer = () => {
             <div className='footer-top flex flex-wrap  justify-around  mt-5 w-full bg-gradient-to-r from-black to-gray-700 items-center text-white p-10'>
                 <div>
                     <div className='flex items-center'>
-                        <h1 className='text-2xl font-semibold'>Drone Manufacture</h1>
+                        <h1 className='text-2xl font-semibold'>Drone Manufacturing</h1>
                         <h1 className='text-2xl text-primary'><GiElectric /></h1>
                     </div>
                     <div className='flex items-center my-3'>
@@ -65,7 +65,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='footer-bottom'>
-                <p className='p-4 text-white font-semibold  text-center bg-slate-800'>Copyright &copy; 2022. All right reserved by <span>Drone Manufacture</span></p>
+                <p className='p-4 text-white font-semibold  text-center bg-slate-800'>Copyright &copy; 2022. All right reserved by <span>Drone Manufacturing</span></p>
             </div>
         </footer>
     );

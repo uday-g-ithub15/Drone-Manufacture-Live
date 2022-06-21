@@ -29,7 +29,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='hidden lg:block'>
-                    <Link to={'/'} className="btn border-none normal-case text-xl bg-primary text-white ">Drone Manufacture <span><GiElectric /></span></Link>
+                    <Link to={'/'} className="btn border-none normal-case text-xl bg-primary text-white ">Drone Manufacturing <span><GiElectric /></span></Link>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -20,10 +20,6 @@ import ManageOrder from './pages/Dashboard/ManageOrder';
 import ManageProduct from './pages/Dashboard/ManageProduct';
 import AddProduct from './pages/Dashboard/AddProduct';
 import PrivateAdmin from './pages/Private/PrivateAdmin';
-import Skills from './pages/MyPortfolio/Skills';
-import Contact from './pages/MyPortfolio/Contact';
-import Projects from './pages/MyPortfolio/Projects';
-import AboutMe from './pages/MyPortfolio/AboutMe';
 
 function App() {
   return (
@@ -36,10 +32,6 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/portfolio' element={<MyPortfolio />} >
-          <Route index element={<AboutMe />} />
-          <Route path='/portfolio/about/skills' element={<Skills />} />
-          <Route path='/portfolio/about/contact' element={<Contact />} />
-          <Route path='/portfolio/about/projects' element={<Projects />} />
         </Route>
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/dashboard' element={<PrivateLogin><Dashboard /></PrivateLogin>} >

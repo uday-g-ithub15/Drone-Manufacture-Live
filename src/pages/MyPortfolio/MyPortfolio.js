@@ -1,15 +1,12 @@
 import React from 'react';
 import Navbar from '../Shared/Header/Navbar';
-import About from './About';
-import Banner from './Banner';
 
 const MyPortfolio = () => {
     return (
         <>
             <Navbar />
-            <section className='mt-20 text-3xl text-accent bg-slate-100 '>
-                <Banner />
-                <About />
+            <section className='mt-20 text-3xl text-accent bg-slate-100  '>
+                <iframe src="https://uday-hasan-portfolio.web.app/" frameborder="1" title='Uday Hasan Portfolio' className='w-full h-screen'  ></iframe>
             </section>
         </>
     );
