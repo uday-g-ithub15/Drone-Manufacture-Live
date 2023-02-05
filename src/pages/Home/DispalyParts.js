@@ -6,7 +6,7 @@ import DisplayPart from './DisplayPart';
 
 const Parts = () => {
     const navigate = useNavigate();
-    const { data: parts, isLoading, refetch } = useParts(`http://localhost:5000/parts`)
+    const { data: parts, isLoading, refetch } = useParts(`https://drone-manufacture-server.vercel.app/parts`)
     if (isLoading) {
         return <Loading />
     }

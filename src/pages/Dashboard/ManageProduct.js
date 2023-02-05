@@ -3,12 +3,12 @@ import useParts from '../../hooks/useParts';
 import Loading from '../Shared/Loading';
 
 const ManageProduct = () => {
-    const { data: orders, isLoading, refetch } = useParts(`http://localhost:5000/parts`)
+    const { data: orders, isLoading, refetch } = useParts(`https://drone-manufacture-server.vercel.app/parts`)
     if (isLoading) {
         return <Loading />
     }
     const handleCancel = id => {
-        fetch(`http://localhost:5000/part/${id}`, {
+        fetch(`https://drone-manufacture-server.vercel.app/part/${id}`, {
             method: "DELETE"
         }).then(res => res.json()).then(data => {
             refetch()

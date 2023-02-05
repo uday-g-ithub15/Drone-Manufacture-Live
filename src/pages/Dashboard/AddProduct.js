@@ -15,7 +15,7 @@ const AddProduct = () => {
         const description = e.target.desc.value;
         const picture = e.target.picture.value;
         const part = { picture, price, minimumOrder, available, name, description }
-        fetch(`http://localhost:5000/parts`, {
+        fetch(`https://drone-manufacture-server.vercel.app/parts`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

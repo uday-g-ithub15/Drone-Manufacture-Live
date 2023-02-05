@@ -13,8 +13,8 @@ const MyOrders = () => {
     const email = user?.email;
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        // fetch(`http://localhost:5000/orders/${email}`, {
-        fetch(`http://localhost:5000/orders/${email}`, {
+        // fetch(`https://drone-manufacture-server.vercel.app/orders/${email}`, {
+        fetch(`https://drone-manufacture-server.vercel.app/orders/${email}`, {
             method: "GET",
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const MyOrders = () => {
         return <Loading />
     }
     const handleCancel = id => {
-        fetch(`http://localhost:5000/parts/${id}`, {
+        fetch(`https://drone-manufacture-server.vercel.app/parts/${id}`, {
             method: "DELETE"
         }).then(res => res.json()).then(data => {
             const rest = orders.filter(order => order._id !== id)
