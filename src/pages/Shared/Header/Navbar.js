@@ -5,7 +5,42 @@ import { BiLogIn } from 'react-icons/bi'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { signOut } from 'firebase/auth';
+
+//**** */
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+
+//**** */
+
 const Navbar = () => {
+    //****************
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+    //****************
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const logOut = () => {
@@ -14,42 +49,150 @@ const Navbar = () => {
         localStorage.removeItem('accessToken')
     }
     return (
-        <div className="navbar bg-accent text-white w-full fixed top-0 z-50">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex="0" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
-                    <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
-                        <li><Link to={'/'}>Home</Link></li>
-                        <li><Link to={'/parts'}>Parts</Link></li>
-                        <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                        <li><Link to={'/blogs'}>Blogs</Link></li>
-                        <li><Link to={'/portfolio'}>My Portfolio</Link></li>
-                    </ul>
-                </div>
-                <div className='hidden lg:block'>
-                    <Link to={'/'} className="btn border-none normal-case text-xl bg-primary text-white ">Drone Manufacturing <span><GiElectric /></span></Link>
-                </div>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/'}>Home</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/parts'}>Parts</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/dashboard'}>Dashboard</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/portfolio'}>My Portfolio</Link></li>
-                    <li className=' hover:bg-primary transition-all duration-200'><Link to={'/blogs'}>Blogs</Link></li>
-                </ul>
-            </div>
-            <div className="navbar-end">
-                {
-                    user ? <>
-                        <button className='btn rounded-full bg-primary  font-bold text-white'>{user?.displayName}</button>
-                        <button className='btn rounded-full bg-primary  font-bold text-white' onClick={logOut}> Logout</button>
-                    </> : <Link to={'/login'} className="btn bg-primary text-white font-bold"><span>Login</span> <span className='text-2xl'> <BiLogIn /></span></Link>
-                }
-            </div>
-        </div>
+        <AppBar position="sticky">
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component={Link}
+                        to="/"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            textDecoration: 'none', color: 'white', padding: '0.5em',
+                        }}
+                    >
+                        DRONE MANUFACTURE
+                    </Typography>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            X
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/'}>Home</Link>
+                                <Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/parts'}>Parts</Link>
+
+                                <Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/portfolio'}>My Portfolio</Link>
+                            </MenuItem>
+                        </Menu>
+                    </Box>
+
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component={Link}
+                        to="/"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            textDecoration: 'none', color: 'white', padding: '0.5em',
+                        }}
+                    >
+                        DRONE MANUFACTURE
+                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <Link to={'/'} style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }}>Home</Link>
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/parts'}>Parts</Link>
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/portfolio'}>My Portfolio</Link>
+                        </Button>
+                    </Box>
+
+                    <Box sx={{ flexGrow: 0 }}>
+                        {
+                            user ?
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt={user?.displayName} src={user.photoURL} />
+                                    </IconButton>
+                                </Tooltip>
+                                :
+                                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                                    <Button onClick={handleCloseNavMenu} variant='contained'
+                                        sx={{ my: 2, color: 'white', display: 'block' }}><Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/login'}>LOGIN</Link></Button>
+                                    <Button onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}><Link style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} to={'/register'}>REGISTER</Link></Button>
+                                </Box>
+                        }
+                        {
+                            user && <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Typography variant='h5'>{user?.displayName}</Typography>
+                                </MenuItem>
+                                {/* <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link to={'/dashboard'} style={{ textDecoration: 'none', color: 'white', padding: '0.5em', }} >Dashboard</Link>
+                                </MenuItem> */}
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Button variant='outlined' onClick={logOut}>Logout</Button>
+                                </MenuItem>
+                            </Menu>
+                        }
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 };
 

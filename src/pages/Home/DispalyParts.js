@@ -1,12 +1,12 @@
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useParts from '../../hooks/useParts';
-import Navbar from '../Shared/Header/Navbar';
 import Loading from '../Shared/Loading';
 import DisplayPart from './DisplayPart';
 
 const Parts = () => {
     const navigate = useNavigate();
-    const { data: parts, isLoading, refetch } = useParts(`https://secret-everglades-45349.herokuapp.com/parts`)
+    const { data: parts, isLoading, refetch } = useParts(`http://localhost:5000/parts`)
     if (isLoading) {
         return <Loading />
     }
@@ -16,14 +16,14 @@ const Parts = () => {
         refetch()
     }
     return (
-        <>
-            <Navbar />
-            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-24 bg-slate-50'>
+        <Box sx={{ margin: '1em 0' }}>
+            <Typography variant='h4' sx={{ color: 'black' }}>PARTS</Typography>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, gap: '10px' }} >
                 {
                     rev.map(part => <DisplayPart part={part} key={part._id} handlePurchase={handlePurchase} />)
                 }
-            </section>
-        </>
+            </Box>
+        </Box>
     );
 };
 

@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import { Box, Button, Typography } from '@mui/material';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import ProfileEditModal from './ProfileEditModal';
 
 const MyProfile = () => {
-    const [disable, setDisable] = useState(true)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const [user, loading] = useAuthState(auth)
     if (loading) {
         return <Loading />
     }
-    console.log(user)
     const handleUpdate = async (e) => {
         e.preventDefault()
     }
     return (
-        <div className='text-info text-xl'>
+        <Box sx={{ border: 'solid black', padding: '1em' }} className='text-info text-xl'>
             <form onSubmit={handleUpdate}>
-                <h1>Name : {user?.displayName}</h1>
-                <h1>Email : {user?.email}</h1>
-                {/* <h1>Address : {user?.}</h1> */}
-                <h1>Phone : <input className='border border-info' disabled={disable} type={'tel'} placeholder='Phone' name='mobile' /></h1>
-                <h1>Linkedin : <input className='border border-info' disabled={disable} type={'text'} placeholder='Linkedin' name='in' /></h1>
-                <button className='btn btn-primary mt-2' onClick={() => setDisable(!disable)}>Edit</button>
-                {!disable && <input className='btn btn-primary' type={'submit'} value='Submit' />}
+                <Typography variant='h5'><Typography>Name : </Typography> {user?.displayName}</Typography>
+                <Typography variant='h5'><Typography>Email : </Typography> {user?.email}</Typography>
+                <Typography variant='h5'><Typography>Mobile : </Typography> {user?.phoneNumber ? user?.phoneNumber : 'None'}</Typography>
+                <Typography variant='h5'><Typography>Linkedin : </Typography> {user?.photoURL ? user?.photoURL : 'None'}</Typography>
+                <Button variant='contained' sx={{ marginTop: '1em' }} onClick={handleOpen}>Edit</Button>
             </form>
-        </div>
+            {open && <ProfileEditModal open={open} handleClose={handleClose} />}
+        </Box>
     );
 };
 

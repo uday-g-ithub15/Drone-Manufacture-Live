@@ -4,40 +4,42 @@ import { FaTools } from 'react-icons/fa'
 import { HiUserGroup } from 'react-icons/hi'
 import { AiOutlineFileDone, AiOutlineProject } from 'react-icons/ai'
 import './BussinessSummary.css'
+import { Box, styled } from '@mui/material';
 
 const BussinessSummary = () => {
+    const ELEMENT_CONTAINER = styled(Box)({
+        padding: '1.5em',
+        backgroundColor: '#ede9e4'
+    })
     return (
-        <section className='flex flex-col w-full  items-center justify-evenly lg:flex-row  p-14 mt-5 bg-primary text-white relative '>
-            <div className='relative flex flex-col  items-center'>
-                <h1 className='text-4xl mb-2'><FaTools /></h1>
-                <h1 className="text-3xl font-semibold ">7500 <span className='absolute  -top-2 left-15 text-lg text-'><BsFillPlusCircleFill /></span></h1>
-                <p className='font-medium'>Tools</p>
+        <Box sx={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
+            <ELEMENT_CONTAINER >
+                <h1 ><FaTools /></h1>
+                <h1 >7500 <span ><BsFillPlusCircleFill /></span></h1>
+                <p >Tools</p>
 
-            </div>
-            <hr className='block border-2 w-1/5 mb-5 mt-1 lg:hidden' />
-            <div className="hidden lg:block divider-custom"></div>
-            <div className='relative flex flex-col  items-center'>
-                <h1 className='text-4xl mb-2 '><AiOutlineFileDone /></h1>
-                <h1 className="text-3xl font-semibold ">5500 <span className='absolute  -top-2 left-15 text-lg text-'><BsFillPlusCircleFill /></span></h1>
-                <p className='font-medium'>Project Complete</p>
+            </ELEMENT_CONTAINER>
+            <div ></div>
+            <ELEMENT_CONTAINER >
+                <h1 ><AiOutlineFileDone /></h1>
+                <h1 >5500 <span ><BsFillPlusCircleFill /></span></h1>
+                <p >Project Complete</p>
 
-            </div>
-            <hr className='block border-2 w-1/5 mb-5 mt-1 lg:hidden' />
-            <div className="hidden lg:block divider-custom"></div>
-            <div className='relative flex flex-col  items-center'>
-                <h1 className='text-4xl mb-2'><AiOutlineProject /></h1>
-                <h1 className="text-3xl font-semibold ">5800 <span className='absolute  -top-2 left-15 text-lg text-'><BsFillPlusCircleFill /></span></h1>
-                <p className='font-medium'>Total Projects</p>
+            </ELEMENT_CONTAINER>
+            <div ></div>
+            <ELEMENT_CONTAINER >
+                <h1 ><AiOutlineProject /></h1>
+                <h1 >5800 <span ><BsFillPlusCircleFill /></span></h1>
+                <p >Total Projects</p>
 
-            </div>
-            <hr className='block border-2 w-1/5 mb-5 mt-1 lg:hidden' />
-            <div className="hidden lg:block divider-custom"></div>
-            <div className='relative flex flex-col  items-center mb-2'>
-                <h1 className='text-4xl mb-2'><HiUserGroup /></h1>
-                <h1 className="text-3xl font-semibold">7900 <span className='absolute  -top-2 left-15 text-lg text-'><BsFillPlusCircleFill /></span></h1>
-                <p className='font-medium'>Team member</p>
-            </div>
-        </section>
+            </ELEMENT_CONTAINER>
+            <div ></div>
+            <ELEMENT_CONTAINER >
+                <h1 ><HiUserGroup /></h1>
+                <h1 >4900 <span ><BsFillPlusCircleFill /></span></h1>
+                <p >Team member</p>
+            </ELEMENT_CONTAINER>
+        </Box>
     );
 };
 

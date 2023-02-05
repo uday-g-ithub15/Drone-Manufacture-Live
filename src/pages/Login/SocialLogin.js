@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import { Box, Button } from '@mui/material';
 
 const SocialLogin = () => {
     const navigate = useNavigate()
@@ -22,9 +23,9 @@ const SocialLogin = () => {
         return <Loading />
     }
     return (
-        <div className='my-2'>
-            <button className='flex items-center btn btn-primary' onClick={() => signInWithGoogle()}><span className='text-2xl' > <AiOutlineGoogle /></span><span>Sign In with Google</span></button>
-        </div>
+        <Box sx={{ margin: '1em auto', }}>
+            <Button variant='contained' startIcon={<AiOutlineGoogle />} onClick={() => signInWithGoogle()}><span>Sign In with Google</span></Button>
+        </Box>
     );
 };
 

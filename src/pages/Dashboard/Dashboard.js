@@ -6,45 +6,61 @@ import useAdmin from '../../hooks/useAdmin';
 import Navbar from '../Shared/Header/Navbar';
 import Loading from '../Shared/Loading';
 import { BiMenu } from 'react-icons/bi'
+import { AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, Button, ListItemIcon, ListItemText, Menu, Toolbar, Typography } from '@mui/material';
+import { AiOutlineMail, AiOutlineInbox, AiOutlineMenu } from 'react-icons/ai'
 
 const Dashboard = () => {
+    const [mobileOpen, setMobileOpen] = React.useState(false);
     const [user, loading] = useAuthState(auth);
     const { admin } = useAdmin(user);
     if (loading) {
         return <Loading />
     }
+    const menu = (
+        <List >
+            <ListItem sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end', gap: 1 }} >
+                <Button variant='contained' component={Link} to='/dashboard' >
+                    Profile
+                </Button>
+                {!admin && <>
+                    <Button variant='contained' component={Link} to='/dashboard/reviews' >
+                        My Review
+                    </Button>
+                    <Button variant='contained' component={Link} to='/dashboard/myorder' >
+                        My Orders
+                    </Button>
+                </>}
+                {admin && <>
+                    <Button component={Link} variant={'contained'} to='/dashboard/manageorders'>Manage Orders</Button>
+                    <Button component={Link} variant={'contained'} to='/dashboard/addproduct'>Add a product</Button>
+                    <Button component={Link} variant={'contained'} to='/dashboard/manageuser'>Manage Users</Button>
+                    <Button component={Link} variant={'contained'} to='/dashboard/manageproduct'>Manage Products</Button>
+                </>}
+            </ListItem>
+        </List>
+    )
     return (
-        <section>
-            <Navbar />
-            <section className='mt-20 w-full '>
-                <div class="drawer drawer-mobile  overflow-y-scroll">
-                    <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-                    <div class="drawer-content flex flex-col">
-                        <label for="my-drawer-2" class="text-black text-3xl drawer-button fixed top-16 lg:hidden"><BiMenu /></label>
-                        <h1 className='text-accent text-3xl'>Dashboard</h1>
-                        <Outlet />
-                    </div>
-                    <div class="drawer-side">
-                        <label for="my-drawer-2" class="drawer-overlay"></label>
-                        <ul class="menu p-4 overflow-y-auto w-80 bg-slate-200 text-accent">
-                            <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard'>My Profile</Link></li>
-                            {!admin && <>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/reviews'>My Review</Link></li>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/myorder'>My Orders</Link></li>
-                            </>}
-                            {admin && <>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/manageorders'>Manage Orders</Link></li>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/addproduct'>Add a product</Link></li>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/manageuser'>Manage Users</Link></li>
-                                <li className='hover:bg-slate-500 duration-500'><Link to='/dashboard/manageproduct'>Manage Products</Link></li>
-                            </>}
-                        </ul>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: '', height: '100vh', }}>
+            <Box sx={{ flex: '1' }}>
+                <Navbar />
+            </Box>
+            <Box sx={{ display: 'flex', width: '100%', flex: '8' }}>
+                <Box sx={{ flex: '3', }}>
+                    <Outlet />
+                </Box>
+                <Box sx={{ flex: '1', backgroundColor: 'aqua' }}>
 
-                    </div>
-                </div>
-            </section>
-        </section>
+                    {menu}
+
+                </Box>
+            </Box>
+        </Box>
     );
 };
 
 export default Dashboard;
+
+
+
+
+

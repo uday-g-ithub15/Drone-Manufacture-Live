@@ -6,15 +6,18 @@ import BussinessSummary from './BussinessSummary';
 import DisplayParts from './DispalyParts';
 import GetInTouch from './GetInTouch';
 import TeamMember from './TeamMember';
+import { Box } from '@mui/material';
 const Home = () => {
     return (
-        <div className=' mt-12'>
+        <div>
             <Navbar />
-            <Banner />
-            <DisplayParts />
-            <BussinessSummary />
-            <GetInTouch />
-            <TeamMember />
+            <Box sx={{ width: '95%', margin: '0 auto' }}>
+                <Banner />
+                <DisplayParts />
+                <BussinessSummary />
+                <GetInTouch />
+                <TeamMember />
+            </Box>
             <Footer />
         </div>
     );

@@ -1,37 +1,43 @@
+import { Box, Button, styled, Typography } from '@mui/material';
 import React from 'react';
 
 const TeamMember = () => {
+    const MEMBER_CONTAINER = styled(Box)({
+        margin: '0.5em',
+        backgroundColor: '#ede9e4',
+        padding: '0.5em'
+    })
     return (
-        <div>
-            <h1 className='text-3xl text-info text-center'>Meet our awesome and expert senior member .</h1>
-            <div className='grid grid-cols-1 lg:grid-cols-3 mx-5' >
-                <div className='flex flex-col items-center'>
-                    <div> <img src="https://hellloexpert.com/tf/html/endus/assets/images/team/img-1.jpg" alt="" /> </div>
+        <Box>
+            <Typography variant='h4' sx={{ textAlign: 'center' }}>Meet our awesome and expert senior member .</Typography>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }} >
+                <MEMBER_CONTAINER>
+                    <Box> <img src="https://hellloexpert.com/tf/html/endus/assets/images/team/img-1.jpg" alt="" /> </Box>
                     <div>
-                        <h1 className='text-accent text-2xl'>Josette Wadsworth</h1>
-                        <p className='text-sm text-accent'>Senior Engineer</p>
-                        <button className='btn btn-secondary btn-sm'>Contact</button>
+                        <Typography variant='h5' >Josette Wadsworth</Typography>
+                        <Typography variant='small' sx={{ display: 'block' }}>Senior Engineer</Typography>
+                        <Button sx={{ margin: '0.5em 0' }} variant='contained'>Contact</Button>
                     </div>
-                </div>
-                <div className='flex flex-col items-center'>
+                </MEMBER_CONTAINER>
+                <MEMBER_CONTAINER>
                     <div> <img src="https://hellloexpert.com/tf/html/endus/assets/images/team/img-2.jpg" alt="" /> </div>
                     <div>
-                        <h1 className='text-accent text-2xl'>Stephen Robert</h1>
-                        <p className='text-sm text-accent'>Senior Engineer</p>
-                        <button className='btn btn-secondary btn-sm'>Contact</button>
+                        <Typography variant='h5' >Stephen Robert</Typography>
+                        <Typography variant='small' sx={{ display: 'block' }}>Senior Engineer</Typography>
+                        <Button sx={{ margin: '0.5em 0' }} variant='contained'>Contact</Button>
                     </div>
-                </div>
-                <div className='flex flex-col items-center'>
+                </MEMBER_CONTAINER>
+                <MEMBER_CONTAINER>
                     <div> <img src="https://hellloexpert.com/tf/html/endus/assets/images/team/img-3.jpg" alt="" /> </div>
                     <div>
-                        <h1 className='text-accent text-2xl'>George Alex</h1>
-                        <p className='text-sm text-accent'>Senior Engineer</p>
-                        <button className='btn btn-secondary btn-sm'>Contact</button>
+                        <Typography variant='h5' >George Alex</Typography>
+                        <Typography variant='small' sx={{ display: 'block' }}>Senior Engineer</Typography>
+                        <Button sx={{ margin: '0.5em 0' }} variant='contained'>Contact</Button>
                     </div>
-                </div>
+                </MEMBER_CONTAINER>
 
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

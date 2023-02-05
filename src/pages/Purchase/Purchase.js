@@ -1,3 +1,4 @@
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -13,7 +14,7 @@ const Purchase = () => {
     const [user, userLoading] = useAuthState(auth);
     const [part, setPart] = useState({});
     useEffect(() => {
-        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`).then(res => res.json()).then(data => setPart(data))
+        fetch(`http://localhost:5000/parts/${id}`).then(res => res.json()).then(data => setPart(data))
     }, [id])
     const { name, picture, price, minimumOrder: min, description: desc, available: stock } = part;
     const [newStock, setNewStock] = useState(stock);
@@ -23,27 +24,30 @@ const Purchase = () => {
         const email = user.email;
         const userQuantity = e.target.quantity.value;
         if (parseInt(userQuantity) < parseInt(min)) {
-            toast.error(`You can't order less than minimum(${min}) quantity `)
+            toast.error(`You can't order less than ${min} quantity `)
             return;
         }
         else if (userQuantity > stock) {
             toast.error(`Sorry, we have only ${stock} products in stock `)
             return
         }
+        else if (userQuantity <= 0) {
+            toast.error(`Please provide a valid quantity`)
+            return
+        }
         setNewStock(newStock - userQuantity)
         const product = { picture, price, orderQuantity: userQuantity, name, description: desc, email }
-        fetch(`https://secret-everglades-45349.herokuapp.com/orders`, {
+        fetch(`http://localhost:5000/orders`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(product)
         }).then(res => res.json()).then(data => {
-            console.log(data);
         })
         toast.success('Order Successful')
 
-        fetch(`https://secret-everglades-45349.herokuapp.com/parts/${id}`, {
+        fetch(`http://localhost:5000/parts/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -56,58 +60,59 @@ const Purchase = () => {
         return <Loading />
     }
     return (
-        <div class="hero min-h-screen w-4/5 mx-auto">
-            <div class="hero-content flex-col-reverse lg:flex-row-reverse">
-                <div class="sm:text-center flex-col items-center lg:flex-row">
-                    <div className='mr-2'>
-                        <img src={picture} alt='Product Demo' />
-                    </div>
-                    <div className='text-xl text-accent font-semibold ml-2'>
-                        <h4>Name : {name}</h4>
-                        <h4>Description : {desc}</h4>
-                        <h4>Price : ${price}</h4>
-                        <h4>Minimum Order : {min}</h4>
-                        <h4>In Stock : {newStock}</h4>
 
-                    </div>
-                </div>
-                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl">
-                    <div class="card-body text-accent">
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <h1 className='text-3xl text-accent'>Buyer & Product information</h1>
-                            <label className="label">
-                                <span className="label-text text-accent">Buyer name ....</span>
-                            </label>
-                            <input type={'text'} className="input input-bordered input-info w-full max-w-xs" {...register("name")} value={user.displayName} readOnly />
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }} >
+            <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2em' }} >
+                <Box sx={{ display: 'flex', justifyContent: 'center', }} >
+                    <img width='80%' src={picture} alt='Product Demo' />
+                </Box>
+                <Stack spacing={2} sx={{ width: '80%', marginTop: '1em' }}>
+                    <h3>Name : {name}</h3>
+                    <p>Description : {desc}</p>
+                    <p>Price : ${price}</p>
+                    <p>Minimum Order : {min}</p>
+                    <p>In Stock : {newStock}</p>
 
-                            <label className="label">
-                                <span className="label-text text-accent">Buyer email</span>
-                            </label>
-                            <input className="input input-bordered input-info w-full max-w-xs" type={'email'} {...register("email")} value={user.email} readOnly />
-                            <label className="label">
-                                <span className="label-text text-accent">Parts </span>
-                            </label>
-                            <input
-                                type="text"
-                                className="input input-bordered input-info w-full max-w-xs"
-                                {...register("part")} value={part.name} readOnly
-                            />
-                            <label className="label">
-                                <span className="label-text text-accent">Order Quantity </span>
-                            </label>
-                            <input
-                                type="number"
-                                className="input input-bordered input-info w-full max-w-xs"
-                                {...register("quantity")} defaultValue={min}
-                            />
-                            <input className='btn block btn-primary my-2' type="submit" value={'Purchase'} />
-                            <input className='btn block btn-primary' type="button" onClick={() => navigate('/')} value={'Go to home'} />
-                        </form>
+                </Stack>
+            </Box>
+            <Box sx={{ flex: '1', padding: '3em 2em' }} >
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Typography mb={3} variant='h4' >Buyer & Product information</Typography>
+                    <Stack spacing={2}>
+                        <TextField
+                            {...register("name")}
+                            id="outlined-read-only-input"
+                            label="Buyer name ...."
+                            defaultValue={user?.displayName}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                        <TextField
+                            type={'email'} {...register("email")}
+                            id="outlined-read-only-input"
+                            label="Buyer Email ...."
+                            defaultValue={user?.email}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                        <TextField
+                            id="outlined-helperText"
+                            label="Order Quantity"
+                            defaultValue={min}
+                            type="number"
+                            {...register("quantity")}
+                        />
+                    </Stack>
+                    <Stack mt={1} spacing={1}>
+                        <Button variant='contained' type='submit'>Purchase</Button>
+                        <Button variant='outlined' onClick={() => navigate('/')} >Go to home</Button>
+                    </Stack>
+                </form>
+            </Box>
+        </Box>
 
-                    </div>
-                </div>
-            </div>
-        </div>
     );
 };
 

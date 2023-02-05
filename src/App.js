@@ -8,7 +8,6 @@ import Login from './pages/Login/Login';
 import PrivateLogin from './pages/Private/PrivateLogin';
 import Error from './pages/Shared/Error';
 import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
-import Blogs from './pages/Blogs/Blogs';
 import Dashboard from './pages/Dashboard/Dashboard';
 import MyProfile from './pages/Dashboard/MyProfile';
 import MyOrders from './pages/Dashboard/MyOrders';
@@ -33,8 +32,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/portfolio' element={<MyPortfolio />} >
         </Route>
-        <Route path='/blogs' element={<Blogs />} />
-        <Route path='/dashboard' element={<PrivateLogin><Dashboard /></PrivateLogin>} >
+        {/* <Route path='/dashboard' element={<PrivateLogin><Dashboard /></PrivateLogin>} >
           <Route index element={<MyProfile />} />
           <Route path='/dashboard/myorder' element={<MyOrders />} />
           <Route path='/dashboard/reviews' element={<AddReview />} />
@@ -42,7 +40,7 @@ function App() {
           <Route path='/dashboard/manageorders' element={<PrivateAdmin><ManageOrder /></PrivateAdmin>} />
           <Route path='/dashboard/manageproduct' element={<PrivateAdmin><ManageProduct /></PrivateAdmin>} />
           <Route path='/dashboard/addproduct' element={<PrivateAdmin><AddProduct /></PrivateAdmin>} />
-        </Route>
+        </Route> */}
         <Route path='*' element={<Error />} />
       </Routes>
       <ToastContainer />

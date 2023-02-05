@@ -6,68 +6,66 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { GoLocation } from 'react-icons/go'
 import { FaTwitter, FaFacebook, FaLinkedin } from 'react-icons/fa'
 import './Footer.css'
+import { Box, Button, Stack, styled, Typography } from '@mui/material';
 
 const Footer = () => {
+    const ELEMENT = styled(Box)({
+        display: 'flex', alignItems: 'center', padding: '0.5em',
+    })
+    const TITLE = styled('h2')({
+        marginBottom: '0.5em',
+    })
 
     return (
-        <footer className='w-full'>
-            <div className='footer-top flex flex-wrap  justify-around  mt-5 w-full bg-gradient-to-r from-black to-gray-700 items-center text-white p-10'>
-                <div>
-                    <div className='flex items-center'>
-                        <h1 className='text-2xl font-semibold'>Drone Manufacturing</h1>
-                        <h1 className='text-2xl text-primary'><GiElectric /></h1>
+        <Box component={'footer'} sx={{ marginTop: '0.5em', backgroundColor: '#ede9e4' }} >
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '1em', flexWrap: 'wrap', }} >
+                <Box sx={{ margin: '0.5em' }}>
+                    <ELEMENT >
+                        <TITLE >Drone Manufacturing</TITLE>
+                        <h1 ><GiElectric /></h1>
+                    </ELEMENT>
+                    <ELEMENT>
+                        <p style={{ marginRight: '0.5em' }}><FiPhoneCall /></p>
+                        <h3>Call Us : +00 11223344</h3>
+                    </ELEMENT>
+                    <ELEMENT >
+                        <p style={{ marginRight: '0.5em' }}><AiOutlineMail /></p>
+                        <h3>Email Us : electronic-manufacture@yahoo.com</h3>
+                    </ELEMENT>
+                    <ELEMENT >
+                        <p style={{ marginRight: '0.5em' }}><GoLocation /></p>
+                        <h3>Address : 88 Mist Street, USA</h3>
+                    </ELEMENT>
+                </Box>
+                <Box sx={{ padding: '1em', margin: '0.5em' }}>
+                    <TITLE >Our Services</TITLE>
+                    <div >
+                        <p>&#8658; Lorem ipsum dolor sit. </p>
+                        <p>&#8658; Lorem ipsum dolor sit. </p>
                     </div>
-                    <div className='flex items-center my-3'>
-                        <p className='text-secondary mr-3 '><FiPhoneCall /></p>
-                        <div>
-                            <p>Call Us :</p>
-                            <p>+00 11223344</p>
-                        </div>
+                </Box>
+                <Box sx={{ padding: '1em', margin: '0.5em' }}>
+                    <TITLE >Quick Links</TITLE>
+                    <div>
+                        <p>&#8658; About Company </p>
+                        <p>&#8658; Latest Projects</p>
+                        <p>&#8658; Our Mission</p>
+                        <p>&#8658; Contact Us</p>
                     </div>
-                    <div className='flex items-center my-3'>
-                        <p className='text-secondary mr-3 '><AiOutlineMail /></p>
-                        <div>
-                            <p>Email Us :</p>
-                            <p>electronic-manufacture@yahoo.com</p>
-                        </div>
-                    </div>
-                    <div className='flex items-center my-3'>
-                        <p className='text-secondary mr-3 '><GoLocation /></p>
-                        <div>
-                            <p>Address :</p>
-                            <p>88 Mist Street, USA</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h1 className='text-2xl font-semibold'>Our Services</h1>
-                    <ul className='leading-9'>
-                        <li>&#8658; Recycling rejected products</li>
-                        <li>&#8658; Eco-friendly products</li>
-                    </ul>
-                </div>
-                <div className='hidden lg:block'>
-                    <h1 className='text-2xl font-semibold'>Quick Links</h1>
-                    <ul className='leading-9'>
-                        <li>&#8658; About Company </li>
-                        <li>&#8658; Latest Projects</li>
-                        <li>&#8658; Our Mission</li>
-                        <li>&#8658; Contact Us</li>
-                    </ul>
-                </div>
-                <div>
-                    <h1 className='text-2xl font-semibold'>Follow Us</h1>
-                    <ul className='flex flex-wrap justify-around mt-4'>
-                        <button className='btn btn-circle text-2xl mr-1 text-white bg-black'><FaFacebook /></button>
-                        <button className='btn btn-circle text-2xl mr-1 text-white bg-black'><FaLinkedin /></button>
-                        <button className='btn btn-circle text-2xl mr-1 text-white bg-black'><FaTwitter /></button>
-                    </ul>
-                </div>
-            </div>
-            <div className='footer-bottom'>
-                <p className='p-4 text-white font-semibold  text-center bg-slate-800'>Copyright &copy; 2022. All right reserved by <span>Drone Manufacturing</span></p>
-            </div>
-        </footer>
+                </Box>
+                <Box sx={{ padding: '1em', margin: '0.5em' }}>
+                    <TITLE>Follow Us</TITLE>
+                    <Stack direction={'row'} spacing={1} >
+                        <Button variant='outlined' ><FaFacebook size={18} /></Button>
+                        <Button variant='outlined' ><FaLinkedin size={18} /></Button>
+                        <Button variant='outlined' ><FaTwitter size={18} /></Button>
+                    </Stack>
+                </Box>
+            </Box>
+            <Box sx={{ padding: '0.7em', }}>
+                <Typography sx={{ textAlign: 'center', fontWeight: 'bold' }}>Copyright &copy; 2022. All right reserved by <span>Drone Manufacturing</span></Typography>
+            </Box>
+        </Box>
     );
 };
 

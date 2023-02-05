@@ -1,6 +1,6 @@
-import React from 'react';
+import { Button, Chip, Divider, Typography, Box, TextField, styled } from '@mui/material';
+import React, { useState } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useToken from '../../hooks/useToken';
@@ -11,7 +11,8 @@ import SocialLogin from './SocialLogin';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
     const [
         signInWithEmailAndPassword,
         userLogin,
@@ -22,15 +23,21 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
     const { token } = useToken(userLogin || user)
     let err;
-    const onSubmit = async (data, e) => {
-        await signInWithEmailAndPassword(data.email, data.pass);
+    const onSubmit = async (e) => {
+        if (email === '') {
+            err = 'Email is required'
+        }
+        else if (pass === '') { err = 'Password is required' }
+        else {
+            err = ''
+            await signInWithEmailAndPassword(email, pass);
+        }
 
     };
     if (loading) {
         return <Loading />
     }
     if (error) {
-        console.log(error.code)
         if (error.code === 'auth/wrong-password') {
             err = 'Password not matched';
         }
@@ -44,52 +51,26 @@ const Login = () => {
     if (token) {
         navigate(from, { replace: true });
     }
+    const TEXTFIELD = styled(TextField)({
+        margin: '0.5em 0',
+    })
     return (
         <>
             <Navbar />
-            <div className='w-full h-screen flex flex-col justify-center items-center mt-12'>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className='text-3xl text-accent'>Please Login</h1>
-                    <label className="label">
-                        <span className="label-text">Enter your email</span>
-                    </label>
-                    <input className="input input-bordered input-info w-full max-w-xs" type={'email'} {...register("email", {
-                        required: {
-                            value: true,
-                            message: 'Email is required'
-                        }
-                    })} />
-                    <label className="label">
-                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                    </label>
-                    <label className="label">
-                        <span className="label-text">Your Password </span>
-                    </label>
-                    <input
-                        type="password"
-                        placeholder="Your Password"
-                        className="input input-bordered input-info w-full max-w-xs"
-                        {...register("pass", {
-                            required: {
-                                value: true,
-                                message: 'Password is required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.pass?.type === 'required' && <span className="label-text-alt text-red-500">{errors.pass.message}</span>}
-                    </label>
-                    {<p className='text-red-500 mb-2'>{err}</p>}
-                    <input className='btn block btn-primary' type="submit" />
-                    <p className='text-accent mt-2'>Don't have an account ? <Link className='text-primary' to={'/register'}>Sign Up</Link></p>
+            <Box sx={{ width: '60%', display: 'flex', flexDirection: 'column', backgroundColor: '#ede9e4', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '1em' }} >
+                <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+                    <Typography variant='h4'>Please Login</Typography>
+                    <TEXTFIELD type={'email'} required id="standard-basic" label="Your Email" variant="standard" onChange={(e) => setEmail(e.target.value)} />
+                    <TEXTFIELD type={'password'} required id="standard-basic" label="Your Password" variant="standard" onChange={(e) => setPass(e.target.value)} />
+                    <Button variant='contained' type='submit' >LOGIN</Button>
+                    {<Typography sx={{ color: 'red', mb: '1em' }} >{err}</Typography>}
+                    <Typography variant='p' component='p' sx={{ marginTop: '1em' }}>Don't have an account ? <Link style={{ color: 'blue' }} to={'/register'}>Sign Up</Link></Typography>
                 </form>
-                <div className='flex justify-center items-center '>
-                    <div className='h-1 w-20 border-2 border-slate-500 mx-2'></div>
-                    <div>Or</div>
-                    <div className='h-1 w-20 border-2 border-slate-500 mx-2'></div>
-                </div>
+                <Divider sx={{ marginTop: '0.5em' }}>
+                    <Chip label="OR" />
+                </Divider>
                 <SocialLogin />
-            </div>
+            </Box>
         </>
     );
 };
